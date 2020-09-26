@@ -1,6 +1,10 @@
 class Blog < ApplicationRecord
-    #has_many :comments
+    #Associations
+    has_many :comments, dependent: :destroy
+
+    #Validations
     validates :title, presence: true
     validates :content, presence: true 
     validates :publisher, presence: true  
+
 end
