@@ -1,33 +1,20 @@
-<div class="container">
-  <h2 class="">All Blogs</h2>
-
-    <%= form_for :blog, :html => {:class => "form-horizontal center"} do |f| %>
-        <div class="form-group">
-            <%= f.label :title, "Title:", class: "col-md-4 control-label" %>
-            <div class="col-md-8">
-            <%= f.text_field :title, class: "form-control" %>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :content, "Content:", class: "col-md-4 control-label" %>
-            <div class="col-md-8">
-            <%= f.text_area :content, class: "form-control", rows: 10 %>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <%= f.label :publisher, "Publisher:", class: "col-md-4 control-label" %>
-            <div class="col-md-8">
-            <%= f.text_field :publisher, class: "form-control" %>
-            </div>
-        </div>
-        <%= f.submit "Submit", class: "btn btn-default btn-outline-primary" %>  
-    <% end %>
-<div class="all blogs mt-5">
-    <% @blogs.each do |blog| %>
-    <tr><%= blog.title %>
-    <%= blog.content %>
-    <%= blog.publisher %></tr>
-    <% end %>
-</div>
-</div>
+<% if current_page?(root_path) %>
+   <h2>Home Page</h2>
+   <% @blogs.each do |blog| %>
+   <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4"><%= blog.title.titleize %></h1>
+        <p class="lead"><%= blog.content %></p>
+        <hr class="my-4">
+        <p>posted on : <%= blog.created_at.strftime("%B %d, %Y") %></p>
+        <p class="lead">
+           <%= link_to "Show", blog_path(blog), class:"btn btn-primary btn-sm" %></a>
+           <%= link_to "Edit", edit_blog_path(blog), class:"btn btn-success btn-sm" %></a>
+           <%= link_to "Delete", blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></a>
+        </p>
+    </div>
+   </div>
+   <% end %> 
+<% else %> 
+<%= render "form" %>
+<% end %>
