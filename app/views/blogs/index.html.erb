@@ -1,7 +1,6 @@
 <% if current_page?(root_path) %>
-   <h2>Home Page</h2>
    <% @blogs.each do |blog| %>
-   <div class="container">
+   <div class="container mt-5 w-75">
       <div class="jumbotron">
         <h1 class="display-4"><%= blog.title.titleize %></h1>
         <p class="lead"><%= blog.content %></p>

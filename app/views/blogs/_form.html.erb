@@ -1,26 +1,25 @@
 <div class="container">
-  <h2 class="">All Blogs</h2>
+<%= form_for @blog, :html => {:class => "form-horizontal center"} do |f| %>
+<h2 class="col-md-8">All Blogs</h2>
+  <div class="form-group p-0">
+    <%= f.label :title, "Title:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, "Content:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_area :content, class: "form-control", rows: 10 %>
+    </div>
+  </div>
 
-    <%= form_for @blog, :html => {:class => "form-horizontal center"} do |f| %>
-        <div class="form-group">
-            <%= f.label :title, "Title:", class: "col-md-4 control-label" %>
-            <div class="col-md-8">
-            <%= f.text_field :title, class: "form-control" %>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :content, "Content:", class: "col-md-4 control-label" %>
-            <div class="col-md-8">
-            <%= f.text_area :content, class: "form-control", rows: 10 %>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <%= f.label :publisher, "Publisher:", class: "col-md-4 control-label" %>
-            <div class="col-md-8">
-            <%= f.text_field :publisher, class: "form-control" %>
-            </div>
-        </div>
-        <%= f.submit "Submit", class: "btn btn-default btn-outline-primary" %>  
-    <% end %>
+  <div class="form-group">
+    <%= f.label :publisher, "Publisher:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :publisher, class: "form-control" %>
+    </div>
+  </div>
+    <div class="form-group col-md-8"><%= f.submit "Submit", class: "btn btn-default btn-outline-primary" %></div>
+<% end %>
 </div>
