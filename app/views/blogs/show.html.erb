@@ -1,1 +1,29 @@
-<%= @blog.title %>
+<div class="container mt-4">
+<% @blog.comments.each do |comment| %>
+<div class="jumbotron">
+  <h1 class="display-4"><%= comment.commenter %></h1>
+  <p class="lead"><%= comment.comment_text %></p>
+  <hr class="my-4">
+  <p>posted on : <%= comment.created_at.strftime("%B %d, %Y") %></p>
+  <p class="lead">
+           <%= link_to "Edit",  edit_blog_comment_path(@blog), class:"btn btn-success btn-sm" %></a>
+           <%= link_to "Delete", blog_comment_path(@blog), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></a>
+  </p>
+</div>
+<% end %>
+<h2>Add Comment</h2>
+<%= form_for([@blog, @blog.comments.build ]) do |form| %>
+
+<p>
+    <%= form.label :commenter, class: "col-md-4 control-label" %><br>
+    <%= form.text_field :commenter, class: "form-control" %>
+  </p>
+  <p>
+    <%= form.label :comment_text, class: "col-md-4 control-label" %><br>
+    <%= form.text_area :comment_text, class: "form-control" %>
+  </p>
+  <p>
+    <%= form.submit "Submit", class: "btn btn-default btn-outline-primary" %>
+  </p>
+</div>
+<% end %>
