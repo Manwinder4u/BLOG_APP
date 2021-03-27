@@ -17,9 +17,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @blog = Blog.find(params[:blog_id])
   end
 
   def update
+  end
+
+  def destroy
   end
 
   private
